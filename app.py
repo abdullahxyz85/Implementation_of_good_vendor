@@ -20,7 +20,7 @@ def load_css():
 load_css()
 
 # App Title and Description
-st.title("🚀 AI-Powered Vendor Backend")
+st.title("🚀 ISP Analyzer Pro")
 st.markdown("Welcome to the AI-Powered Vendor Backend! Here you can find ISPs, compare them, run speed tests, analyze reviews, and more.")
 
 # Sidebar content
