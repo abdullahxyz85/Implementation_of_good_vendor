@@ -25,6 +25,10 @@ load_css()
 st.title("🚀 AI-Powered ISP Analyzer Platform")
 st.markdown("Welcome to the AI-Powered ISP Analyzer! Here you can find ISPs, compare them, run speed tests, analyze reviews, and more.")
 
+# Sidebar content
+# Advanced AI & ML Integration message at the top
+st.sidebar.markdown("### 📢 Advanced AI & ML Integration Enabled! 🚀")
+
 # Back to Home Button at the top of the sidebar
 if st.sidebar.button("Back to Home"):
     st.markdown("[Click here to go to Home](https://quiet-bombolone-790733.netlify.app/)", unsafe_allow_html=True)
@@ -49,9 +53,6 @@ st.sidebar.markdown("""
 - **AI Map**: Visualize geolocation data.
 - **ISP Analytics**: Analyze ISP performance metrics.
 """)
-
-# Add a footer or additional information
-st.sidebar.markdown("### 📢 Advanced AI & ML Integration Enabled! 🚀")
 
 # Sidebar Menu
 menu = [
