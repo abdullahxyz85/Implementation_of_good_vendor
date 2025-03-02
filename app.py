@@ -2,17 +2,15 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
-from isp_data import get_isp_data
 from reviews import analyze_review
 from compare import compare_isps
-from speed_test import check_speed
 from accessories import get_accessories
 from recommend import recommend_isp
 from chatbot import ai_chatbot
 from maps import get_location_ai, add_location_to_graph, show_map
 
 # Set page configuration as the first command
-st.set_page_config(page_title="AI-Powered ISP Analyzer", layout="wide")
+st.set_page_config(page_title="AI-Powered Vendor", layout="wide")
 
 def load_css():
     """Load custom CSS for styling."""
@@ -22,8 +20,8 @@ def load_css():
 load_css()
 
 # App Title and Description
-st.title("🚀 AI-Powered ISP Analyzer Platform")
-st.markdown("Welcome to the AI-Powered ISP Analyzer! Here you can find ISPs, compare them, run speed tests, analyze reviews, and more.")
+st.title("🚀 AI-Powered Vendor Backend")
+st.markdown("Welcome to the AI-Powered Vendor Backend! Here you can find ISPs, compare them, run speed tests, analyze reviews, and more.")
 
 # Sidebar content
 
@@ -34,7 +32,14 @@ st.sidebar.markdown("### 📢 Advanced AI & ML Integration Enabled! 🚀")
 
 # Select Feature Section
 st.sidebar.markdown("### 🔧 Select Feature")
-menu = ["Find ISPs", "Compare ISPs", "Speed Test", "AI Reviews", "AI ISP Recommendation", "AI Chatbot", "Accessories Store", "AI Map", "ISP Analytics"]
+menu = [
+    "Compare ISPs", 
+    "AI Reviews", 
+    "AI ISP Recommendation", 
+    "AI Chatbot", 
+    "Accessories Store", 
+    "ISP Analytics"
+]
 choice = st.sidebar.selectbox("", menu)
 
 # Sidebar content
@@ -48,45 +53,21 @@ You can also run speed tests, analyze reviews, and get recommendations based on 
 # Add icons (you can use any icon library or images)
 st.sidebar.markdown("### 🚀 Features")
 st.sidebar.markdown("""
-- **Find ISPs**: Search for available ISPs in your area.
 - **Compare ISPs**: Compare different ISPs based on various metrics.
-- **Speed Test**: Check your internet speed.
 - **AI Reviews**: Analyze reviews using AI.
 - **AI ISP Recommendation**: Get personalized ISP recommendations.
 - **AI Chatbot**: Interact with an AI-powered chatbot for assistance.
 - **Accessories Store**: Browse wireless accessories.
-- **AI Map**: Visualize geolocation data.
 - **ISP Analytics**: Analyze ISP performance metrics.
 """)
 
-# Feature: Find ISPs
-if choice == "Find ISPs":
-    st.subheader("📍 Find Available ISPs Near You")
-    address = st.text_input("Enter Address", placeholder="e.g., 123 Main St, City, Country")
-    
-    if st.button("Search ISP"):
-        lat_lng = get_location_ai(address)
-        if lat_lng:
-            lat, lng = lat_lng
-            st.success(f"✅ AI Found: {address} → Latitude: {lat}, Longitude: {lng}")
-            add_location_to_graph(address)
-            show_map()
-        else:
-            st.error("❌ AI could not determine the location.")
 
 # Feature: Compare ISPs
-elif choice == "Compare ISPs":
+if choice == "Compare ISPs":
     st.subheader("📊 ISP Comparison")
     isp_data = compare_isps()
     st.dataframe(isp_data)
 
-# Feature: Speed Test
-elif choice == "Speed Test":
-    st.subheader("🚀 Run Speed Test")
-    if st.button("Start Speed Test"):
-        download, upload, insights = check_speed()
-        st.success(f"📡 Download: {download} Mbps | Upload: {upload} Mbps")
-        st.info(f"💡 Insights: {insights}")
 
 # Feature: AI Reviews
 elif choice == "AI Reviews":
@@ -118,27 +99,93 @@ elif choice == "AI Chatbot":
 elif choice == "Accessories Store":
     st.subheader("🛍 Wireless Accessories Store")
     accessories = get_accessories()
-    for item, price in accessories.items():
-        st.write(f"📌 {item} - ${price}")
+    for item, details in accessories.items():
+        st.write(f"📌 **{item}**")
+        st.write(f"  - **Price**: {details['price']}")
+        st.write(f"  - **Brand**: {details['brand']}")
+        st.write(f"  - **Description**: {details['description']}")
+        st.write(f"  - **Rating**: {details['rating']} ⭐")
+        st.write(f"  - **Availability**: {details['availability']}")
+        st.write("  - **Specifications**:")
+        for key, value in details['specifications'].items():
+            st.write(f"    - **{key}**: {value}")
+        st.write("  - **Features**:")
+        for feature in details['features']:
+            st.write(f"    - {feature}")
+        st.write(f"  - **Warranty**: {details['warranty']}")
+        st.write("  - **Customer Reviews**:")
+        for review in details['customer_reviews']:
+            st.write(f"    - **User**: {review['user']}, **Rating**: {review['rating']}, **Comment**: {review['comment']}")
+        st.write(f"  - **Image**: [View Image]({details['image_url']})")
+        st.write("---")
 
-# Feature: AI Map
-elif choice == "AI Map":
-    st.subheader("🌍 AI-Powered Geolocation Map")
-    show_map()
 
 # Feature: ISP Analytics
 elif choice == "ISP Analytics":
     st.subheader("📈 ISP Performance Analytics")
+
     # Sample Data for ISP Speeds
     isp_names = ["ISP A", "ISP B", "ISP C", "ISP D"]
     download_speeds = [150, 200, 170, 220]  # Mbps
     upload_speeds = [50, 60, 55, 65]  # Mbps
+    customer_satisfaction = {
+        "ISP A": [4.5, 4.7, 4.6, 4.8],
+        "ISP B": [4.0, 4.1, 4.2, 4.0],
+        "ISP C": [4.2, 4.3, 4.1, 4.4],
+        "ISP D": [4.8, 4.9, 4.7, 5.0],
+    }
+    latency = [20, 30, 25, 15]  # ms
 
-    fig, ax = plt.subplots(figsize=(8, 5))
-    ax.bar(isp_names, download_speeds, color='skyblue', label='Download Speed')
-    ax.bar(isp_names, upload_speeds, color='orange', label='Upload Speed', alpha=0.7)
-    ax.set_ylabel("Speed (Mbps)")
-    ax.set_title("ISP Download vs Upload Speeds")
-    ax.legend()
-    
-    st.pyplot(fig)
+    # Bar Chart for Download vs Upload Speeds
+    st.subheader("Download vs Upload Speeds")
+    fig1, ax1 = plt.subplots()
+    ax1.bar(isp_names, download_speeds, color='skyblue', label='Download Speed')
+    ax1.bar(isp_names, upload_speeds, color='orange', label='Upload Speed', alpha=0.7)
+    ax1.set_ylabel("Speed (Mbps)")
+    ax1.set_title("ISP Download vs Upload Speeds")
+    ax1.legend()
+    st.pyplot(fig1)
+
+    # Pie Chart for Customer Satisfaction
+    st.subheader("Customer Satisfaction Ratings")
+    fig2, ax2 = plt.subplots()
+    ax2.pie([sum(ratings) / len(ratings) for ratings in customer_satisfaction.values()], labels=isp_names, autopct='%1.1f%%', startangle=90)
+    ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    st.pyplot(fig2)
+
+    # Line Chart for Latency
+    st.subheader("ISP Latency Over Time")
+    time_period = ["Week 1", "Week 2", "Week 3", "Week 4"]
+    fig3, ax3 = plt.subplots()
+    ax3.plot(time_period, latency, marker='o', color='purple', label='Latency (ms)')
+    ax3.set_ylabel("Latency (ms)")
+    ax3.set_title("ISP Latency Over Time")
+    ax3.legend()
+    st.pyplot(fig3)
+
+    # Scatter Plot for Download vs Customer Satisfaction
+    st.subheader("Download Speed vs Customer Satisfaction")
+    fig4, ax4 = plt.subplots()
+    ax4.scatter(download_speeds, [sum(ratings) / len(ratings) for ratings in customer_satisfaction.values()], color='green')
+    ax4.set_xlabel("Download Speed (Mbps)")
+    ax4.set_ylabel("Customer Satisfaction (Rating)")
+    ax4.set_title("Download Speed vs Customer Satisfaction")
+    st.pyplot(fig4)
+
+    # Box Plot for ISP Ratings
+    st.subheader("Box Plot of Customer Ratings")
+    fig5, ax5 = plt.subplots()
+    ax5.boxplot(list(customer_satisfaction.values()), labels=isp_names)
+    ax5.set_ylabel("Customer Satisfaction (Rating)")
+    ax5.set_title("Box Plot of Customer Ratings")
+    st.pyplot(fig5)
+
+    # Add some styling
+    st.markdown("""
+    <style>
+    .stSubheader {
+        color: #1E90FF;
+        font-weight: bold;
+    }
+    </style>
+    """, unsafe_allow_html=True)

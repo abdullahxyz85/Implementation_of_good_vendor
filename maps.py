@@ -19,9 +19,11 @@ def get_location_ai(address):
                 {"role": "user", "content": f"Find latitude and longitude of {address}."},
             ],
         )
-        return response.choices[0].message.content
+        # Assuming the response is a string like "lat, lng"
+        lat_lng = response.choices[0].message.content.split(", ")
+        return float(lat_lng[0]), float(lat_lng[1])  # Ensure it returns two float values
     except Exception as e:
-        return f"Error: {str(e)}"
+        return None  # Or handle the error appropriately
 
 def add_location_to_graph(address):
     # Implementation for adding location to graph
