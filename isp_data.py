@@ -1,11 +1,28 @@
-import requests
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = OpenAI(
+    base_url=os.getenv("BASE_URL"),
+    api_key=os.getenv("AIML_API_KEY"),
+)
 
 def get_isp_data(latitude, longitude):
-    url = f"https://broadbandmap.fcc.gov/api/isp?lat={latitude}&lng={longitude}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    return {"error": "Failed to fetch ISP data"}
+    """Uses AI model API to fetch ISP data based on latitude and longitude."""
+    try:
+        response = client.chat.completions.create(
+            model="deepseek/deepseek-chat",
+            messages=[
+                {"role": "system", "content": "You are an AI assistant who provides ISP data based on location."},
+                {"role": "user", "content": f"Provide ISP data for latitude={latitude}, longitude={longitude}."},
+            ],
+        )
+        isp_data = response.choices[0].message.content
+        return isp_data
+    except Exception as e:
+        return {"error": f"Failed to fetch ISP data: {str(e)}"}
 
 # Test
 if __name__ == "__main__":

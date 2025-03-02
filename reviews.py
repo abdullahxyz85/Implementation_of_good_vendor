@@ -1,25 +1,27 @@
-import requests
 import os
+from openai import OpenAI
 from dotenv import load_dotenv
 
-load_dotenv()  # Load API keys from .env file
+load_dotenv()
 
-AIML_API_KEY = os.getenv("AIML_API_KEY")
-BASE_URL = os.getenv("BASE_URL")
+client = OpenAI(
+    base_url=os.getenv("BASE_URL"),
+    api_key=os.getenv("AIML_API_KEY"),
+)
 
 def analyze_review(review_text):
-    """Uses AIML API to analyze the sentiment of an ISP review."""
-    url = f"{BASE_URL}/sentiment"
-    headers = {"Authorization": f"Bearer {AIML_API_KEY}", "Content-Type": "application/json"}
-    data = {"text": review_text}
-    
-    response = requests.post(url, json=data, headers=headers)
-    
-    if response.status_code == 200:
-        sentiment = response.json().get("sentiment", "Unknown")
-        return sentiment
-    else:
-        return f"Error: {response.json()}"
+    """Uses AI model API to analyze the sentiment of an ISP review."""
+    try:
+        response = client.chat.completions.create(
+            model="deepseek/deepseek-chat",
+            messages=[
+                {"role": "system", "content": "You are an AI assistant who analyzes the sentiment of reviews."},
+                {"role": "user", "content": f"Analyze the sentiment of this review: {review_text}"},
+            ],
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 # Test
 if __name__ == "__main__":

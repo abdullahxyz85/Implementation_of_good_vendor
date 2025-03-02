@@ -1,25 +1,27 @@
-import requests
 import os
+from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
 
-AIML_API_KEY = os.getenv("AIML_API_KEY")
-BASE_URL = os.getenv("BASE_URL")
+client = OpenAI(
+    base_url=os.getenv("BASE_URL"),
+    api_key=os.getenv("AIML_API_KEY"),
+)
 
 def ai_chatbot(user_query):
-    """Uses AIML API to provide AI-powered answers for ISP-related queries."""
-    url = f"{BASE_URL}/chatbot"
-    headers = {"Authorization": f"Bearer {AIML_API_KEY}", "Content-Type": "application/json"}
-    data = {"query": user_query}
-    
-    response = requests.post(url, json=data, headers=headers)
-    
-    if response.status_code == 200:
-        answer = response.json().get("response", "Sorry, I couldn't find an answer.")
-        return answer
-    else:
-        return f"Error: {response.json()}"
+    """Uses AI model API to provide AI-powered answers for ISP-related queries."""
+    try:
+        response = client.chat.completions.create(
+            model="deepseek/deepseek-chat",
+            messages=[
+                {"role": "system", "content": "You are an AI assistant who knows everything about ISPs."},
+                {"role": "user", "content": user_query},
+            ],
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 # Test
 if __name__ == "__main__":
