@@ -25,6 +25,34 @@ load_css()
 st.title("🚀 AI-Powered ISP Analyzer Platform")
 st.markdown("Welcome to the AI-Powered ISP Analyzer! Here you can find ISPs, compare them, run speed tests, analyze reviews, and more.")
 
+# Back to Home Button at the top of the sidebar
+if st.sidebar.button("Back to Home"):
+    st.markdown("[Click here to go to Home](https://quiet-bombolone-790733.netlify.app/)", unsafe_allow_html=True)
+
+# Sidebar content
+st.sidebar.markdown("### 📊 Project Overview")
+st.sidebar.markdown("""
+This project is designed to help users find and compare Internet Service Providers (ISPs) using AI and machine learning techniques. 
+You can also run speed tests, analyze reviews, and get recommendations based on your preferences.
+""")
+
+# Add icons (you can use any icon library or images)
+st.sidebar.markdown("### 🚀 Features")
+st.sidebar.markdown("""
+- **Find ISPs**: Search for available ISPs in your area.
+- **Compare ISPs**: Compare different ISPs based on various metrics.
+- **Speed Test**: Check your internet speed.
+- **AI Reviews**: Analyze reviews using AI.
+- **AI ISP Recommendation**: Get personalized ISP recommendations.
+- **AI Chatbot**: Interact with an AI-powered chatbot for assistance.
+- **Accessories Store**: Browse wireless accessories.
+- **AI Map**: Visualize geolocation data.
+- **ISP Analytics**: Analyze ISP performance metrics.
+""")
+
+# Add a footer or additional information
+st.sidebar.markdown("### 📢 Advanced AI & ML Integration Enabled! 🚀")
+
 # Sidebar Menu
 menu = [
     "Find ISPs", "Compare ISPs", "Speed Test", "AI Reviews", 
@@ -115,27 +143,3 @@ elif choice == "ISP Analytics":
     ax.legend()
     
     st.pyplot(fig)
-
-# Sidebar Footer
-st.sidebar.markdown("📢 **Advanced AI & ML Integration Enabled!** 🚀")
-st.sidebar.markdown("### 📊 Project Overview")
-st.sidebar.markdown("""
-This project is designed to help users find and compare Internet Service Providers (ISPs) using AI and machine learning techniques. 
-You can also run speed tests, analyze reviews, and get recommendations based on your preferences.
-""")
-st.sidebar.markdown("### 🚀 Features")
-st.sidebar.markdown("""
-- **Find ISPs**: Search for available ISPs in your area.
-- **Compare ISPs**: Compare different ISPs based on various metrics.
-- **Speed Test**: Check your internet speed.
-- **AI Reviews**: Analyze reviews using AI.
-- **AI ISP Recommendation**: Get personalized ISP recommendations.
-- **AI Chatbot**: Interact with an AI-powered chatbot for assistance.
-- **Accessories Store**: Browse wireless accessories.
-- **AI Map**: Visualize geolocation data.
-- **ISP Analytics**: Analyze ISP performance metrics.
-""")
-
-# Back to Home Button
-if st.sidebar.button("Back to Home"):
-    st.markdown("[Click here to go to Home](https://quiet-bombolone-790733.netlify.app/)", unsafe_allow_html=True)
