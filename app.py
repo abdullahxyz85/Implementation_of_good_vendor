@@ -20,7 +20,7 @@ def load_css():
 
 load_css()
 
-st.title("🚀 AI-Powered Vendor Backend")
+st.title("🚀 ISP Analyzer Platform")
 st.markdown("Welcome to the AI-Powered Vendor Backend! Here you can find ISPs, compare them, run speed tests, analyze reviews, and more.")
 
 menu = ["Find ISPs", "Compare ISPs", "Speed Test", "AI Reviews", "AI ISP Recommendation", "AI Chatbot", "Accessories Store", "AI Map", "ISP Analytics"]
