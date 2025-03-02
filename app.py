@@ -62,7 +62,6 @@ st.sidebar.markdown("""
 """)
 
 
-# Feature: Compare ISPs
 if choice == "Compare ISPs":
     st.subheader("📊 ISP Comparison")
     isp_data = compare_isps()
