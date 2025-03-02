@@ -33,6 +33,11 @@ st.sidebar.markdown("### 📢 Advanced AI & ML Integration Enabled! 🚀")
 if st.sidebar.button("Back to Home"):
     st.markdown("[Click here to go to Home](https://quiet-bombolone-790733.netlify.app/)", unsafe_allow_html=True)
 
+# Select Feature Section
+st.sidebar.markdown("### 🔧 Select Feature")
+menu = ["Find ISPs", "Compare ISPs", "Speed Test", "AI Reviews", "AI ISP Recommendation", "AI Chatbot", "Accessories Store", "AI Map", "ISP Analytics"]
+choice = st.sidebar.selectbox("", menu)
+
 # Sidebar content
 st.sidebar.markdown("### 📊 Project Overview")
 st.sidebar.markdown("""
@@ -53,13 +58,6 @@ st.sidebar.markdown("""
 - **AI Map**: Visualize geolocation data.
 - **ISP Analytics**: Analyze ISP performance metrics.
 """)
-
-# Sidebar Menu
-menu = [
-    "Find ISPs", "Compare ISPs", "Speed Test", "AI Reviews", 
-    "AI ISP Recommendation", "AI Chatbot", "Accessories Store", "AI Map", "ISP Analytics"
-]
-choice = st.sidebar.selectbox("📌 Select Feature", menu)
 
 # Feature: Find ISPs
 if choice == "Find ISPs":
