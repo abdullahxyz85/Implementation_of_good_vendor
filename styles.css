@@ -1,0 +1,94 @@
+/* styles.css */
+body {
+  background-color: #f0f2f5;
+  font-family: "Arial", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar .sidebar-content {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stButton > button {
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.stButton > button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.stTextInput,
+.stTextArea {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+}
+
+.stTextInput:focus,
+.stTextArea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.stSlider {
+  margin: 20px 0;
+}
+
+.stDataFrame {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stMarkdown {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stSuccess {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.stError {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.stWarning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}

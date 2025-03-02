@@ -1,0 +1,11 @@
+streamlit
+pandas
+matplotlib
+networkx
+geopy
+openai
+plotly
+requests
+dotenv
+
+
