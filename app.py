@@ -60,12 +60,14 @@ st.sidebar.markdown("""
 - **Accessories Store**: Browse wireless accessories.
 - **ISP Analytics**: Analyze ISP performance metrics.
 """)
+# Feature: AI Chatbot
+if choice == "AI Chatbot":
+    st.subheader("🤖 AI-Powered Chatbot")
+    user_query = st.text_area("Ask the AI Chatbot", placeholder="Type your question here...")
+    if st.button("Ask"):
+        response = ai_chatbot(user_query)
+        st.success(f"🗨 Chatbot Response: {response}")
 
-
-if choice == "Compare ISPs":
-    st.subheader("📊 ISP Comparison")
-    isp_data = compare_isps()
-    st.dataframe(isp_data)
 
 
 # Feature: AI Reviews
@@ -86,13 +88,11 @@ elif choice == "AI ISP Recommendation":
         recommendation = recommend_isp(speed, reliability, budget)
         st.success(f"🔍 Recommended ISP: {recommendation}")
 
-# Feature: AI Chatbot
-elif choice == "AI Chatbot":
-    st.subheader("🤖 AI-Powered Chatbot")
-    user_query = st.text_area("Ask the AI Chatbot", placeholder="Type your question here...")
-    if st.button("Ask"):
-        response = ai_chatbot(user_query)
-        st.success(f"🗨 Chatbot Response: {response}")
+
+elif choice == "Compare ISPs":
+    st.subheader("📊 ISP Comparison")
+    isp_data = compare_isps()
+    st.dataframe(isp_data)
 
 # Feature: Accessories Store
 elif choice == "Accessories Store":
