@@ -1,0 +1,11 @@
+/* styles.css */
+a {
+  color: #1e90ff; /* Change the color to a nice blue */
+  text-decoration: none; /* Remove the underline */
+  font-weight: bold; /* Make the text bold */
+}
+
+a:hover {
+  text-decoration: underline; /* Underline on hover */
+  color: #ff4500; /* Change color on hover */
+}

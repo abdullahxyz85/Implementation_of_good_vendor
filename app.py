@@ -26,12 +26,11 @@ st.title("🚀 AI-Powered ISP Analyzer Platform")
 st.markdown("Welcome to the AI-Powered ISP Analyzer! Here you can find ISPs, compare them, run speed tests, analyze reviews, and more.")
 
 # Sidebar content
-# Advanced AI & ML Integration message at the top
-st.sidebar.markdown("### 📢 Advanced AI & ML Integration Enabled! 🚀")
 
 # Back to Home Button at the top of the sidebar
-if st.sidebar.button("Back to Home"):
-    st.markdown("[Click here to go to Home](https://quiet-bombolone-790733.netlify.app/)", unsafe_allow_html=True)
+st.sidebar.markdown("[Back to Home](https://quiet-bombolone-790733.netlify.app/)", unsafe_allow_html=True)
+# Advanced AI & ML Integration message at the top
+st.sidebar.markdown("### 📢 Advanced AI & ML Integration Enabled! 🚀")
 
 # Select Feature Section
 st.sidebar.markdown("### 🔧 Select Feature")
@@ -39,6 +38,7 @@ menu = ["Find ISPs", "Compare ISPs", "Speed Test", "AI Reviews", "AI ISP Recomme
 choice = st.sidebar.selectbox("", menu)
 
 # Sidebar content
+# Advanced AI & ML Integration message at the top
 st.sidebar.markdown("### 📊 Project Overview")
 st.sidebar.markdown("""
 This project is designed to help users find and compare Internet Service Providers (ISPs) using AI and machine learning techniques. 
