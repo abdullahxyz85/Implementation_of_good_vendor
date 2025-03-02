@@ -135,3 +135,7 @@ st.sidebar.markdown("""
 - **AI Map**: Visualize geolocation data.
 - **ISP Analytics**: Analyze ISP performance metrics.
 """)
+
+# Back to Home Button
+if st.sidebar.button("Back to Home"):
+    st.markdown("[Click here to go to Home](https://quiet-bombolone-790733.netlify.app/)", unsafe_allow_html=True)
