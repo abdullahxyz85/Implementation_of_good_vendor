@@ -20,7 +20,7 @@ def load_css():
 load_css()
 
 # App Title and Description
-st.title("🚀 ISP Analyzer Pro")
+st.title("🚀 Internet Service Provider Analyzer Pro")
 st.markdown("Welcome to the Internet Service Provider Analyzer! Here you can find ISPs, compare them, run speed tests, analyze reviews, and more.")
 
 # Sidebar content
